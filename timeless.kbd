@@ -27,37 +27,58 @@
   implicit-around around
 )
 (defsrc
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
-  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  del
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     pgup
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret        pgdn   
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
+  lctl lmet lalt           spc            ralt      rctl       left down rght
 )
-(deflayer normal
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  pgup home  nlck kp/  kp*  kp-
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  pgdn end   kp7  kp8  kp9  kp+
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
-  lctl lmet lalt           spc            ralt rmet cmp  @alt            left down rght  kp0  kp.
+(deflayer normal ;; default mode
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  del
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     home
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret        end
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
+  lctl lmet lalt           spc            ralt      @nav       left down rght
 )
-(deflayer alternative
-  @nrm _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    home _    _     _    _    pgup  _    _    _    _
-  _    _    _    _    _    _    _    pgup _    _    _    _    _    _     _    _    pgdn  _    _    _    _
-  _    _    _    pgdn _    _    left down up   rght _    _    _                          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
-  _    _    _              _              _    _    _    @nrm            _    _    _     _    _   
+(deflayer navigate ;; vim normal mode
+  @nrm _    _    _    _    _    _    _    _    _    _    _    _          _
+  _    _    _    _    _    _    _    _    _    _    home _    _    _     _
+  _    _    @fwd _    _    _    _    pgup @ins _    _    _    _    _     pgup
+  _    _    _    pgdn _    _    left down up   rght _    _    _          pgdn
+  @slt _    _    _    _    @bkd _    _    _    _    _    _         _
+  _    _    _              _              _         @nrm      _    _    _
 )
-(deflayer alternative-shift
-  @nrm _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    end  _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _                          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
-  _    _    _              _              _    _    _    _               _    _    _     _    _   
+(deflayer navigate-shift ;; vim normal mode - shifted
+  @nrm _    _    _    _    _    _    _    _    _    _    _    _          _
+  _    _    _    _    end  _    _    _    _    _    _    _    _    _     _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _              _              _         _         _    _    _
+)
+(deflayer insert ;; vim insert mode
+  @nav f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  del
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     home
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret        end
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft       up
+  @inc lmet lalt           spc            ralt      rctl       left down rght
+)
+(deflayer insert-ctl ;; vim insert mode - control
+  @ins _    _    _    _    _    _    _    _    _    _    _    _          _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _
+  _    _    @cw  _    _    _    _    _    _    _    _    _    _    _     _
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _
+  _    _    _    _    _    _    _    _    _    _    _    _         _
+  _    _    _              _              _         _         _    _    _
 )
 (defalias nrm (layer-switch normal))
-(defalias alt (layer-switch alternative))
-(defalias slt (layer-toggle alternative-shift))
+(defalias nav (layer-switch navigate))
+(defalias slt (layer-toggle navigate-shift))
+(defalias ins (layer-switch insert))
+(defalias inc (layer-toggle insert-ctl))
+(defalias fwd C-rght)
+(defalias bkd C-left)
+(defalias cw C-bspc)
