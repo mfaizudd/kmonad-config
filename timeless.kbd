@@ -48,7 +48,7 @@
   _    _    @fwd _    _    _    _    pgup @ins _    _    _    _    _     pgup
   @nrm _    _    pgdn _    _    left down up   rght _    _    _          pgdn
   @slt _    _    _    _    @bkd _    _    _    _    _    _         _
-  _    _    _              _              _         _         _    _    _
+  _    _    _              _              S-f10     _         _    _    _
 )
 (deflayer navigate-shift ;; vim normal mode - shifted
   @nrm _    _    _    _    _    _    _    _    _    _    _    _          _
