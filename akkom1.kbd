@@ -43,12 +43,12 @@
   lctl lmet lalt           spc            ralt      rctl       left down rght
 )
 (deflayer navigate ;; vim normal mode
-  @nrm _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    home _    _    _    _
-  _    _    @fwd @fwd _    _    _    pgup @ins _    _    _    _    _    _
-  @nrm _    _    pgdn _    _    left down up   rght _    _    _         _
-  @slt _    _    _    _    @bkd _    _    _    _    _    _         _
-  _    _    _              _              _         rctl      _    _    _
+  @nrm XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   del  XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   home XX   XX   XX   XX
+  tab  XX   @fwd @fwd XX   XX   XX   pgup XX   XX   XX   XX   XX   XX   XX
+  @nrm XX   XX   pgdn XX   XX   left down up   rght XX   XX   ret       XX
+  @slt XX   XX   XX   XX   @bkd XX   XX   XX   XX   XX   XX        XX
+  XX   XX   XX             XX             XX        rctl      XX   XX   XX
 )
 (deflayer navigate-shift ;; vim normal mode - shifted
   @nrm _    _    _    _    _    _    _    _    _    _    _    _    _    _
@@ -74,8 +74,10 @@
   _    _    _    _    _    _    _    _    _    _    _    _         _
   _    _    _              _              _         _         _    _    _
 )
-(defalias nrm (layer-switch normal))
-(defalias nav (layer-switch navigate))
+(defalias
+  nrm (around (cmd-button "echo normal > /tmp/kmonad-layer") (layer-switch normal)))
+(defalias
+  nav (around (cmd-button "echo navigate > /tmp/kmonad-layer") (layer-switch navigate)))
 (defalias slt (layer-toggle navigate-shift))
 (defalias ins (layer-switch insert))
 (defalias inc (layer-toggle insert-ctl))
